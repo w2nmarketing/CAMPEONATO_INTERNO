@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Campeonato.Entidades.Enum
+﻿namespace Campeonato.Entidades.Enum
 {
     enum Categoria : int
     {
