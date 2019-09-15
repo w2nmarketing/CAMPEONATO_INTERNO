@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Campeonato.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Campeonato.Controllers
 {
@@ -7,10 +8,15 @@ namespace Campeonato.Controllers
         public IActionResult Index()
         {
             return View();
+
+
+
         }
 
         public IActionResult Jogos()
         {
+
+                       
             return View();
         }
 
