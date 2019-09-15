@@ -12,7 +12,7 @@ namespace Campeonato.Models
         public Jogadores Jogador { get; set; }
         public int Gols { get; set; }
 
-        public Gols()
+        public GolsDoJogo()
         {
 
         }
