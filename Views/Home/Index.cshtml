@@ -1,12 +1,25 @@
-﻿
+﻿@model List<Campeonato.Models.Times>
+
 <a href="/">HOME</a> |
 <a href="/home/jogos">JOGOS</a>
 
 <br />
 <br />
 
-
-
 <div class="text-center">
     <h1 class="display-4">Campeonato Interno</h1>
 </div>
+
+
+@foreach (var time in Model)
+{
+
+    <hr />
+    <img src="~/img/escudo/@time.Escudo" />
+    <br />
+    <span>Nome do Time:</span> <strong>@time.Nome</strong>
+    <br />
+    <span>Nome da Categoria:</span> <strong>@time.Categoria</strong>
+
+
+}

@@ -1,12 +1,12 @@
 ﻿namespace Campeonato.Entidades.Enum
 {
-    enum Categoria : int
+    public enum Categoria : int
     {
 
-        Sub7 = 1,
-        Sub9 = 2,
-        Sub12 = 3,
-        Sub15 = 4
+        Sub7 = 7,
+        Sub9 = 9,
+        Sub12 = 12,
+        Sub15 = 15
 
     }
 }

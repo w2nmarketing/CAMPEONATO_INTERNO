@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Campeonato.DAO;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Campeonato.Controllers
 {
@@ -6,9 +7,10 @@ namespace Campeonato.Controllers
     {
         public IActionResult Index()
         {
-            return View();
 
+            TimesDao registros = new TimesDao();
 
+            return View(registros.ListarTimes());
 
         }
 
