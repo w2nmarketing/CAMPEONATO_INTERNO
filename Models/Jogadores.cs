@@ -1,9 +1,16 @@
-﻿namespace Campeonato.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Campeonato.Models
 {
+
+    [Table("rel_time_jogador")]
     public class Jogadores
     {
-        public int id { get; set; }
 
+        [Column("id")]
+        public int Id { get; set; }
+
+        [Column("id_Time")]
         public Times Time { get; set; }
 
         public string Nome { get; set; }
