@@ -10,15 +10,19 @@ namespace Campeonato.DAO
     public class TimesDao
     {
 
+        private CampeonatoContext contexto;
+
+        public TimesDao(CampeonatoContext contexto)
+        {
+            this.contexto = contexto;
+        }
+
         public List<Times> ListarTimes()
         {
 
-            using (var contexto = new CampeonatoContext())
-            {
+            var Lista = contexto.Times.OrderBy(t => t.Categoria).ThenBy(x => x.Id).ToList();
 
-                return contexto.Times.ToList();
-
-            };
+            return Lista;
 
         }
 
