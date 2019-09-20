@@ -8,9 +8,12 @@ namespace Campeonato.Infra
     public class CampeonatoContext : DbContext
     {
 
-        // DbSet < NOME_DA_CLASS > NOME_DA_TABELA 
-
         public DbSet<Times> Times { get; set; }
+        public DbSet<Jogos> Jogos { get; set; }
+        public DbSet<Goleiros> Goleiros { get; set; }
+        public DbSet<Jogadores> Jogadores { get; set; }
+        public DbSet<Fases> Fases { get; set; }
+        public DbSet<GolsDoJogo> GolsDoJogo { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

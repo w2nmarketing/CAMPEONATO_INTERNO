@@ -1,25 +1,21 @@
-﻿@model List<Campeonato.Models.Times>
+﻿
+<div class="row">
 
-<a href="/">HOME</a> |
-<a href="/home/jogos">JOGOS</a>
+    @foreach (var time in ViewBag.Lista_Times)
+    {
 
-<br />
-<br />
+        //.col-	.col-sm-	.col-md-	.col-lg-	.col-xl-
 
-<div class="text-center">
-    <h1 class="display-4">Campeonato Interno</h1>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 text-center">
+            <hr />
+            <a href="/jogos/index/@time.Categoria">
+                <img src="~/img/escudo/@time.Escudo" />
+            </a>
+            <br />
+            <h5>@time.Nome</h5>
+            <p><a class="btn btn-sm btn-secondary" href="/jogos/index/@time.Categoria" role="button">@time.Categoria</a></p>
+        </div>
+
+    }
+
 </div>
-
-
-@foreach (var time in Model)
-{
-
-    <hr />
-    <img src="~/img/escudo/@time.Escudo" />
-    <br />
-    <span>Nome do Time:</span> <strong>@time.Nome</strong>
-    <br />
-    <span>Nome da Categoria:</span> <strong>@time.Categoria</strong>
-
-
-}
