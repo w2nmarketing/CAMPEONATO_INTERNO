@@ -1,0 +1,56 @@
+﻿<h1>Time | @ViewBag.Time.Nome <small>(@ViewBag.Time.Categoria)</small></h1>
+<h5>Listar jogos pelo Time</h5>
+
+<hr />
+
+<div class="row">
+
+    @foreach (var jogo in ViewBag.Listar_Jogos)
+    {
+
+        <div class="col-md-6">
+            <div class="card mb-4 shadow-sm">
+
+                <div class="row mt-4">
+
+                    <div class="col-6 text-center jogo_time_1">
+                        <span class="placar-esq">@jogo.Resultado_1</span>
+                        <a href="/jogos/time/@jogo.Time_1.Id">
+                            <img src="~/img/escudo/@jogo.Time_1.Escudo" class="escudo" />
+                            <br />
+                            <strong>@jogo.Time_1.Nome</strong>
+                        </a>
+                    </div>
+
+                    <div class="col-6 text-center jogo_time_2">
+                        <span class="placar-dir">@jogo.Resultado_2</span>
+                        <a href="/jogos/time/@jogo.Time_2.Id">
+                            <img src="~/img/escudo/@jogo.Time_2.Escudo" class="escudo" />
+                            <br />
+                            <strong>@jogo.Time_2.Nome</strong>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <p class="card-text text-center">
+                        Data: <u>@jogo.Data_Hora.ToString("dd/MM/yyyy")</u> | Horário: <u>@jogo.Data_Hora.ToString("HH:mm")</u>
+                    </p>
+                    <div class=" align-items-right text-center">
+                        <div class="btn-group">
+                            <a href="/jogo/detalhes/@jogo.Id" class="btn btn-sm btn-secondary">Detalhes do Jogo</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    }
+
+</div>
+
+
+@section Scripts {
+    @Html.Partial("_Scripts")
+}

@@ -1,19 +1,17 @@
 ﻿
 <div class="row">
 
-    @foreach (var time in ViewBag.Lista_Times)
+    @foreach (var time in ViewBag.Listar_Times)
     {
-
-        //.col-	.col-sm-	.col-md-	.col-lg-	.col-xl-
 
         <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 text-center">
             <hr />
-            <a href="/jogos/index/@time.Categoria">
+            <a href="/jogos/time/@time.Id">
                 <img src="~/img/escudo/@time.Escudo" />
             </a>
             <br />
             <h5>@time.Nome</h5>
-            <p><a class="btn btn-sm btn-secondary" href="/jogos/index/@time.Categoria" role="button">@time.Categoria</a></p>
+            <p><a class="btn btn-sm btn-secondary" href="/jogos/categoria/@time.Categoria" role="button">@time.Categoria</a></p>
         </div>
 
     }
