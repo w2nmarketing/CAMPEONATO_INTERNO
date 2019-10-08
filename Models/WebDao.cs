@@ -25,6 +25,10 @@ namespace Campeonato.Models
 
         }
 
+        internal List<Jogos> GetJogos()
+        {
 
+            return _contexto.Jogos.ToList();
+        }
     }
 }
