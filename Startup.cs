@@ -27,8 +27,8 @@ namespace Campeonato
                 options => options.UseMySql(Configuration.GetConnectionString("Campeonato"))
             );
 
-            services.AddTransient<WebDao>();
-            services.AddTransient<CampeonatoContext>();
+            services.AddScoped<WebDao, WebDao>();
+            services.AddScoped<CampeonatoContext, CampeonatoContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

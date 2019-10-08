@@ -21,7 +21,7 @@ namespace Campeonato.Models
         public List<Times> GetTimes()
         {
 
-            return _contexto.Times.OrderBy(x => x.Nome).ToList();
+            return _contexto.Times.ToList();
 
         }
 
