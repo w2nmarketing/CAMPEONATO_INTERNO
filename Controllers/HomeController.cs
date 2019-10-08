@@ -1,4 +1,5 @@
-﻿using Campeonato.Models;
+﻿using Campeonato.Infra;
+using Campeonato.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Campeonato.Controllers
@@ -6,17 +7,17 @@ namespace Campeonato.Controllers
     public class HomeController : Controller
     {
 
+        private readonly WebDao _dao;
         
-        public HomeController()
+        public HomeController(WebDao dao)
         {
+            _dao = dao;
         }
 
         public IActionResult Index()
         {
 
-            DALTimes dal = new DALTimes();
-
-            ViewBag.Listar_Times = dal.GetTimes();
+            ViewBag.Listar_Times = _dao.GetTimes();
 
             return View();
 
