@@ -1,4 +1,5 @@
 ﻿using Campeonato.Entidades.Enum;
+using System.Collections.Generic;
 
 namespace Campeonato.Entidades
 {
@@ -13,6 +14,9 @@ namespace Campeonato.Entidades
         public string Nome { get; set; }
 
         public string Escudo { get; set; }
+
+        public virtual ICollection<Jogos> Jogos1 { get; set; }
+        public virtual ICollection<Jogos> Jogos2 { get; set; }
 
         public Times()
         {

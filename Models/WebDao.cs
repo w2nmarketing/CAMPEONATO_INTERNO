@@ -2,6 +2,7 @@
 using Campeonato.Infra;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,16 +20,22 @@ namespace Campeonato.Models
         }
 
         public List<Times> GetTimes()
-        {
-
-            return _contexto.Times.ToList();
+        {           
+            return _contexto.Times.OrderBy(x => x.Nome).ToList();
 
         }
 
-        internal List<Jogos> GetJogos()
+        public List<Jogos> GetJogos()
         {
-
-            return _contexto.Jogos.ToList();
+            return _contexto
+                .Jogos
+                .Include(j => j.Goleiro_1)
+                .Include(j => j.Goleiro_2)
+                .Include(j => j.Time_1)
+                .Include(j => j.Time_2)
+                .ToList();
         }
+
+
     }
 }
