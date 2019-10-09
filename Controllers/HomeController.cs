@@ -17,6 +17,8 @@ namespace Campeonato.Controllers
         public IActionResult Index()
         {
 
+            var jogos = _dao.GetJogos();
+
             ViewBag.Listar_Times = _dao.GetTimes();
 
             return View();
