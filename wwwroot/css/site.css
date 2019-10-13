@@ -21,6 +21,16 @@
         padding: 0 10px;
     }
 
+    .jogo_time_1 .placar-esq-d {
+        position: absolute;
+        top: 30px;
+        right: 5px;
+        background-color: #E51B1F;
+        color: #ffffff;
+        font-size: 25px;
+        padding: 2px 17px;
+    }
+
 .jogo_time_2 {
     position: relative;
     
@@ -34,4 +44,14 @@
         color: #ffffff;
         font-size: 26px;
         padding: 0 10px;
+    }
+
+    .jogo_time_2 .placar-dir-d {
+        position: absolute;
+        top: 30px;
+        left: 5px;
+        background-color: #E51B1F;
+        color: #ffffff;
+        font-size: 25px;
+        padding: 2px 17px;
     }

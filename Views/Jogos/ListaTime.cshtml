@@ -1,5 +1,5 @@
-﻿<h1>Time | @ViewBag.Time.Nome <small>(@ViewBag.Time.Categoria)</small></h1>
-<h5>Listar jogos pelo Time</h5>
+﻿<h1>@ViewBag.Time.Nome <small>(@ViewBag.Time.Categoria)</small></h1>
+<h5>Listar jogos do Time</h5>
 
 <hr />
 
@@ -10,6 +10,20 @@
 
         <div class="col-md-6">
             <div class="card mb-4 shadow-sm">
+
+                @{
+
+                    string fundo = "bg-secondary";
+
+                    if (jogo.Resultado_1 == null && jogo.Resultado_2 == null) {
+                        fundo = "bg-danger";
+                    }
+
+                }
+
+                <div class="col-12 text-center p-2 text-white @fundo">
+                    <strong>@jogo.Fase.Nome</strong>
+                </div>
 
                 <div class="row mt-4">
 
@@ -36,11 +50,19 @@
                     <p class="card-text text-center">
                         Data: <u>@jogo.Data_Hora.ToString("dd/MM/yyyy")</u> | Horário: <u>@jogo.Data_Hora.ToString("HH:mm")</u>
                     </p>
-                    <div class=" align-items-right text-center">
-                        <div class="btn-group">
-                            <a href="/jogo/detalhes/@jogo.Id" class="btn btn-sm btn-secondary">Detalhes do Jogo</a>
+
+                    @if (jogo.Resultado_1 != null && jogo.Resultado_2 != null) {
+
+                        <div class=" align-items-right text-center">
+                            <div class="btn-group">
+
+                                <a href="/jogo/detalhes/@jogo.Id" class="btn btn-sm btn-secondary">Detalhes do Jogo</a>
+
+                            </div>
                         </div>
-                    </div>
+
+                    }
+
                 </div>
 
             </div>

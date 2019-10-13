@@ -14,6 +14,8 @@ namespace Campeonato.Entidades.Map
 
             builder.ToTable("rel_jogo_gols");
             builder.HasKey(x => x.Id);
+
+            builder.HasOne(j => j.Jogador).WithMany(g => g.GolsdoJogo).HasForeignKey(j => j.JogadorId);
             //builder.Property(x => x.Jogo).IsRequired();
             ////builder.Property(x => x.Jogador).IsRequired();
             //builder.Property(x => x.Gols).HasMaxLength(2).HasColumnType("smallint");

@@ -14,7 +14,7 @@ namespace Campeonato.Entidades.Map
 
             builder.ToTable("tbl_fase");
             builder.HasKey(x => x.Id);
-            //builder.Property(x => x.Categoria).IsRequired();
+            builder.Property(x => x.Categoria).IsRequired();
             //builder.Property(x => x.Nome).IsRequired().HasMaxLength(100).HasColumnType("varchar(100)");
             //builder.HasOne(x => x.Categoria).WithMany(x => x.Products);
 
