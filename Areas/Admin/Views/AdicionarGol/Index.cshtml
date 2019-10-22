@@ -1,0 +1,76 @@
+﻿
+
+<h1>Adicionar Gol</h1>
+
+
+    <div class="row">
+
+        <div class="col-md-8 order-md-1">
+
+            <hr />
+
+            <form action="/admin/adicionargol/salvar" method="post">
+
+                <input type="hidden" class="form-control" id="JogoId" name="JogoId" placeholder="" value="@ViewBag.JogoId" required>
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="country">Time - Jogador</label>
+                        <select class="custom-select d-block w-100" id="JogadorId" name="JogadorId" required>
+                            <option value="">Selecione</option>
+                            @foreach (var item in ViewBag.Listar_Jogadores) {
+
+                                <option value="@item.Id">
+                                    @item.Time.Nome |
+                                    @item.Nome
+                                </option>
+
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">Gols</label>
+                        <input type="text" class="form-control" id="Gols" name="Gols" placeholder="" required>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg" type="submit">Salvar Gol</button>
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

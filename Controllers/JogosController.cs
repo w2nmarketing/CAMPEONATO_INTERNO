@@ -65,5 +65,35 @@ namespace Campeonato.Controllers
             return View("Detalhes", jogo);
         }
 
+        //[HttpGet("/jogo/artilheiro")]
+        //public IActionResult Artilheiro()
+        //{
+
+        //    List<ArtilheiroViewModel> lista = _dao.GetArtilheiros();
+
+        //    return View("Artilheiros", lista);
+
+        //}
+
+        [HttpGet("/jogo/artilheiro/{categoria}")]
+        public IActionResult Artilheiro(Categoria categoria)
+        {
+
+            List<ArtilheiroViewModel> lista = _dao.GetArtilheiros(categoria);
+
+            return View("Artilheiros", lista);
+
+        }
+
+        [HttpGet("/jogo/classificacao/{categoria?}")]
+        public IActionResult Classificacao(Categoria categoria)
+        {
+
+            List<Classificacao> lista = _dao.GetClassificacao(categoria);
+
+            return View("Classificacao", lista);
+
+        }
+
     }
 }

@@ -13,9 +13,6 @@ namespace Campeonato.Entidades.Map
 
             builder.HasOne(j => j.Fase).WithMany(g => g.Jogos).HasForeignKey(j => j.FaseId);
 
-            builder.HasOne(j => j.Goleiro_1).WithMany(g => g.Jogos1).HasForeignKey(j => j.Goleiro_1Id);
-            builder.HasOne(j => j.Goleiro_2).WithMany(g => g.Jogos2).HasForeignKey(j => j.Goleiro_2Id);
-
             builder.HasOne(j => j.Time_1).WithMany(g => g.Jogos1).HasForeignKey(j => j.Time_1Id);
             builder.HasOne(j => j.Time_2).WithMany(g => g.Jogos2).HasForeignKey(j => j.Time_2Id);
 

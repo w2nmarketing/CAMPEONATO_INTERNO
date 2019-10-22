@@ -1,6 +1,9 @@
-﻿using Campeonato.Infra;
+﻿using Campeonato.Entidades;
+using Campeonato.Infra;
 using Campeonato.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace Campeonato.Controllers
 {
@@ -17,11 +20,9 @@ namespace Campeonato.Controllers
         public IActionResult Index()
         {
 
-            var jogos = _dao.GetJogos();
+            List<Times> lista = _dao.GetTimes();
 
-            ViewBag.Listar_Times = _dao.GetTimes();
-
-            return View();
+            return View(lista);
 
         }
 

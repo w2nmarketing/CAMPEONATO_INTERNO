@@ -1,0 +1,117 @@
+﻿@model List<Classificacao>
+
+<h1>Classificação </h1>
+<h5>Listar a classificação do campeonato.</h5>
+
+<hr />
+
+<p class="text-center">
+    <a href="/jogo/classificacao/Sub7" class="btn btn-sm btn-success my-2">Sub 7</a>
+    <a href="/jogo/classificacao/Sub9" class="btn btn-sm btn-info my-2">Sub 9</a>
+    <a href="/jogo/classificacao/Sub12" class="btn btn-sm btn-warning my-2">Sub 12</a>
+    <a href="/jogo/classificacao/Sub15" class="btn btn-sm btn-dark my-2">Sub 15</a>
+</p>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-12 col-sm-12 col-lg-12">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Ranking</th>
+                        <th scope="col">Equipe</th>
+                        <th class="text-center" scope="col">Pontos</th>
+                        <th class="text-center" scope="col" nowrap>J <br /><small>jogos</small></th>
+                        <th class="text-center" scope="col" nowrap>V <br /><small>vitórias</small></th>
+                        <th class="text-center" scope="col" nowrap>E <br /><small>empates</small></th>
+                        <th class="text-center" scope="col" nowrap>D <br /><small>derrotas</small></th>
+                        <th class="text-center" scope="col" nowrap>GF <br /><small>gols feitos</small></th>
+                        <th class="text-center" scope="col" nowrap>GS <br /><small>gols sofridos</small></th>
+                        <th class="text-center" scope="col" nowrap>SG <br /><small>saldo de gols</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        int pos = 1;
+                        string nomeClass = "success";
+                    }
+
+                    @foreach (var item in Model) {
+
+                        switch (item.Categoria) {
+                            case Campeonato.Entidades.Enum.Categoria.Sub7:
+                                nomeClass = "success";
+                                break;
+                            case Campeonato.Entidades.Enum.Categoria.Sub9:
+                                nomeClass = "info";
+                                break;
+                            case Campeonato.Entidades.Enum.Categoria.Sub12:
+                                nomeClass = "warning";
+                                break;
+                            case Campeonato.Entidades.Enum.Categoria.Sub15:
+                                nomeClass = "dark";
+                                break;
+                            default:
+                                break;
+                        }
+
+
+
+                        <tr>
+                            <th class="text-center" width="5%" scope="row">@pos º</th>
+                            <td nowrap>
+                                <img src="~/img/escudo/@item.Escudo" width="35" class="mr-3" alt="@item.Nome" />
+
+                                <strong>
+                                    @item.Nome
+                                </strong> <span class="badge badge-@nomeClass">@item.Categoria</span>
+                            </td>
+                            <td width="10%" class="text-center" style="background-color: palegoldenrod">
+                                <h5>@item.Total_Pontos</h5>
+                            </td>
+                            <td width="5%" class="text-center" style="background-color: #f1f1f1;">
+                                @item.Jogos
+                            </td>
+                            <td width="5%" class="text-center">
+                                @item.Total_Vitorias
+                            </td>
+                            <td width="5%" class="text-center">
+                                @item.Total_Empates
+                            </td>
+                            <td width="5%" class="text-center">
+                                @item.Total_Derrotas
+                            </td>
+                            <td width="5%" class="text-center">
+                                @item.Gols_Marcados
+                            </td>
+                            <td width="5%" class="text-center">
+                                @item.Gols_Sofridos
+                            </td>
+                            <td width="5%" class="text-center">
+                                @item.Saldo_Gols
+                            </td>
+                        </tr>
+
+                        pos++;
+
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @Html.Partial("_Scripts")
+}

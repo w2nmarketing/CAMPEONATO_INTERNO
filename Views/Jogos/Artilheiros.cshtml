@@ -1,0 +1,86 @@
+﻿@model List<ArtilheiroViewModel>
+
+<h1>Artilheiros</h1>
+<h5>Listar artilheiros do campeonato, entre todas as categorias</h5>
+
+<hr />
+
+<p class="text-center">
+    <a href="/jogo/artilheiro" class="btn btn-sm btn-secondary my-2">Todos</a>
+    <a href="/jogo/artilheiro/Sub7" class="btn btn-sm btn-success my-2">Sub 7</a>
+    <a href="/jogo/artilheiro/Sub9" class="btn btn-sm btn-info my-2">Sub 9</a>
+    <a href="/jogo/artilheiro/Sub12" class="btn btn-sm btn-warning my-2">Sub 12</a>
+    <a href="/jogo/artilheiro/Sub15" class="btn btn-sm btn-dark my-2">Sub 15</a>
+</p>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-12 col-sm-12 col-lg-12">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">Ranking</th>
+                    <th scope="col">Jogador</th>
+                    <th class="text-center" scope="col">Gols</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    int pos = 1;
+                    string nomeClass = "success";
+                }
+
+                @foreach (var item in Model) {
+
+                    <tr>
+                        <th class="text-center" width="5%" scope="row">@pos º</th>
+                        <td>
+                            <img src="~/img/escudo/@item.Escudo" width="35" class="mr-3" alt="@item.Time" />
+                            <strong>
+                                @item.Jogador
+                            </strong>  <span class="badge badge-@item.CategoriaClass">@item.Categoria</span>
+                            <br /><small class="text-muted">@item.Time</small>
+                        </td>
+                        <td width="10%" class="text-center">
+                            <h3>@item.Gols</h3>
+                        </td>
+                    </tr>
+
+                    pos++;
+
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Html.Partial("_Scripts")
+}
