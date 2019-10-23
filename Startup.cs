@@ -30,9 +30,16 @@ namespace Campeonato
             services.AddScoped<WebDao, WebDao>();
             services.AddScoped<CampeonatoContext, CampeonatoContext>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
             services.AddSession();
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
  
@@ -52,6 +59,8 @@ namespace Campeonato
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseSession();
+
             app.UseMvc(routes =>
             {
                 
@@ -68,8 +77,6 @@ namespace Campeonato
                 //    template: "{area:exists}/{controller=Usuario}/{action=Login}");
 
             });
-
-            app.UseSession();
 
         }
     }

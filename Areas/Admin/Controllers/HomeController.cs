@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Campeonato.Areas.Admin.Filtros;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -6,6 +7,7 @@ namespace Campeonato.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
+    [AutorizacaoFilter]
     public class HomeController : Controller
     {
 

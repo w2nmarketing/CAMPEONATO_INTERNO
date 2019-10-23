@@ -1,4 +1,5 @@
-﻿using Campeonato.Entidades;
+﻿using Campeonato.Areas.Admin.Filtros;
+using Campeonato.Entidades;
 using Campeonato.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +9,7 @@ namespace Campeonato.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
+    [AutorizacaoFilter]
     public class AdicionarGolController : Controller
     {
 
