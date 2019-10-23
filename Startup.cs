@@ -31,6 +31,8 @@ namespace Campeonato
             services.AddScoped<CampeonatoContext, CampeonatoContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSession();
         }
 
  
@@ -61,7 +63,13 @@ namespace Campeonato
                     name: "areas",
                     template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
+                //routes.MapRoute(
+                //    name: "areas",
+                //    template: "{area:exists}/{controller=Usuario}/{action=Login}");
+
             });
+
+            app.UseSession();
 
         }
     }

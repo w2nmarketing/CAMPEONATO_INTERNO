@@ -9,13 +9,11 @@ namespace Campeonato.Areas.Admin.Controllers
     public class HomeController : Controller
     {
 
-        [Authorize]
         public IActionResult Index()
         {
 
             return View();
 
         }
-
     }
 }
