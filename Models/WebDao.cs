@@ -157,7 +157,7 @@ namespace Campeonato.Models
 
         }
 
-        internal List<Classificacao> GetClassificacao(Categoria categoria)
+        public List<Classificacao> GetClassificacao(Categoria categoria)
         {
 
             string filtroCat = "";
@@ -197,25 +197,21 @@ namespace Campeonato.Models
 
         public List<ArtilheiroViewModel> GetArtilheiros(Categoria categoria)
         {
-
             List<ArtilheiroViewModel> lista = new List<ArtilheiroViewModel>();
 
-            var listaArtilheiros = _contexto
+            var items = _contexto
                 .GolsDoJogo
-                .Include(g => g.Jogador)
-                .Include(g => g.Jogo)
-                .OrderByDescending(o => o.Gols)
-                .ThenBy(j => j.Jogador.Nome)
-                .Select(c => new { Jogador = c.Jogador.Nome, c.Gols, c.Jogo.Fase.Categoria, c.Jogador.Time })
-                .ToList();
+                .Where(c => c.Jogo.Fase.Categoria == categoria)
+                .GroupBy(x => new { x.JogadorId, x.Jogo.Fase.Categoria })
+                .Select(g => new { g.Key.JogadorId, g.Key.Categoria, Gols = g.Sum(s => s.Gols) });
 
+            foreach (var item in items) {
 
-
-            foreach (var jogador in listaArtilheiros) {
+                var jogador = _contexto.Jogadores.Include(j => j.Time).FirstOrDefault(j => j.Id == item.JogadorId);
 
                 string nomeClass = "";
 
-                switch (jogador.Categoria) {
+                switch (item.Categoria) {
                     case Categoria.Sub7:
                         nomeClass = "success";
                         break;
@@ -233,9 +229,9 @@ namespace Campeonato.Models
                 }
 
                 lista.Add(new ArtilheiroViewModel() {
-                    Jogador = jogador.Jogador,
-                    Gols = Convert.ToInt32(jogador.Gols),
-                    Categoria = jogador.Categoria,
+                    Jogador = jogador.Nome,
+                    Gols = Convert.ToInt32(item.Gols),
+                    Categoria = item.Categoria,
                     CategoriaClass = nomeClass,
                     Time = jogador.Time.Nome.ToString(),
                     Escudo = jogador.Time.Escudo.ToString()
@@ -243,9 +239,63 @@ namespace Campeonato.Models
 
             }
 
-            return lista;
+            lista = lista.OrderByDescending(j => j.Gols).ToList();
 
+            return lista;
         }
+
+
+        //public List<ArtilheiroViewModel> GetArtilheiros(Categoria categoria)
+        //{
+
+        //    List<ArtilheiroViewModel> lista = new List<ArtilheiroViewModel>();
+
+        //    var listaArtilheiros = _contexto
+        //        .GolsDoJogo
+        //        .Include(g => g.Jogador)
+        //        .Include(g => g.Jogo)
+        //        .OrderByDescending(o => o.Gols)
+        //        .ThenBy(j => j.Jogador.Nome)
+        //        .Select(c => new { Jogador = c.Jogador.Nome, c.Gols, c.Jogo.Fase.Categoria, c.Jogador.Time })
+        //        .ToList();
+
+
+
+        //    foreach (var jogador in listaArtilheiros) {
+
+        //        string nomeClass = "";
+
+        //        switch (jogador.Categoria) {
+        //            case Categoria.Sub7:
+        //                nomeClass = "success";
+        //                break;
+        //            case Categoria.Sub9:
+        //                nomeClass = "info";
+        //                break;
+        //            case Categoria.Sub12:
+        //                nomeClass = "warning";
+        //                break;
+        //            case Categoria.Sub15:
+        //                nomeClass = "dark";
+        //                break;
+        //            default:
+        //                break;
+        //        }
+
+        //        lista.Add(new ArtilheiroViewModel() {
+        //            Jogador = jogador.Jogador,
+        //            Gols = Convert.ToInt32(jogador.Gols),
+        //            Categoria = jogador.Categoria,
+        //            CategoriaClass = nomeClass,
+        //            Time = jogador.Time.Nome.ToString(),
+        //            Escudo = jogador.Time.Escudo.ToString()
+        //        });
+
+        //    }
+
+        //    return lista;
+
+        //}
 
         //public List<ArtilheiroViewModel> GetArtilheiros(int categoria)
         //{
