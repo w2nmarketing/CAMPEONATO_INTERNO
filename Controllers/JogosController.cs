@@ -33,8 +33,8 @@ namespace Campeonato.Controllers
 
             ViewBag.Listar_Jogos = _dao.GetJogos()
                 .Where(p => p.Fase.Categoria == categoria)
-                .OrderByDescending(p => p.FaseId)
-                .ThenBy(j => j.Data_Hora)
+                .OrderByDescending(j => j.Data_Hora)
+                .ThenBy(p => p.FaseId)
                 .ToList();
 
             return View("ListaCategoria");
@@ -49,8 +49,8 @@ namespace Campeonato.Controllers
 
             ViewBag.Listar_Jogos = _dao.GetJogos()
                 .Where((p => p.Time_1.Id == time_id || p.Time_2.Id == time_id))
-                .OrderByDescending(p => p.FaseId)
-                .ThenBy(j => j.Data_Hora)
+                .OrderByDescending(j => j.Data_Hora)
+                .ThenBy(p => p.FaseId)
                 .ToList();
 
             return View("ListaTime");
@@ -65,15 +65,15 @@ namespace Campeonato.Controllers
             return View("Detalhes", jogo);
         }
 
-        //[HttpGet("/jogo/artilheiro")]
-        //public IActionResult Artilheiro()
-        //{
+        [HttpGet("/jogo/classificacao/{categoria?}")]
+        public IActionResult Classificacao(Categoria categoria)
+        {
 
-        //    List<ArtilheiroViewModel> lista = _dao.GetArtilheiros();
+            List<Classificacao> lista = _dao.GetClassificacao(categoria);
 
-        //    return View("Artilheiros", lista);
+            return View("Classificacao", lista);
 
-        //}
+        }
 
         [HttpGet("/jogo/artilheiro/{categoria}")]
         public IActionResult Artilheiro(Categoria categoria)
@@ -82,16 +82,6 @@ namespace Campeonato.Controllers
             List<ArtilheiroViewModel> lista = _dao.GetArtilheiros(categoria);
 
             return View("Artilheiros", lista);
-
-        }
-
-        [HttpGet("/jogo/classificacao/{categoria?}")]
-        public IActionResult Classificacao(Categoria categoria)
-        {
-
-            List<Classificacao> lista = _dao.GetClassificacao(categoria);
-
-            return View("Classificacao", lista);
 
         }
 

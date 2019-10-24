@@ -17,5 +17,14 @@ namespace Campeonato.Areas.Admin.Controllers
             return View();
 
         }
+
+        public IActionResult Sair()
+        {
+
+            HttpContext.Session.Clear();
+
+            return Redirect("/admin");
+
+        }
     }
 }

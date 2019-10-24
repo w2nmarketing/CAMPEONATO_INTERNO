@@ -10,12 +10,10 @@ namespace Campeonato.Areas.Admin.Filtros
 {
     public class AutorizacaoFilterAttribute : ActionFilterAttribute
     {
-
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
 
             var usuario = filterContext.HttpContext.Session.GetString("usuario");
-
 
             if (string.IsNullOrWhiteSpace(usuario)) {
 
@@ -24,15 +22,9 @@ namespace Campeonato.Areas.Admin.Filtros
                         new {
                         area = "Admin",
                         controller = "Usuario",
-                        action = "Login"}));
-
-                //filterContext.Result = new RedirectToRouteResult(
-                //    new RouteValueDictionary(
-                //        new {
-                //            area = "",
-                //            controller = "Usuario",
-                //            action = "Login"
-                //        }));
+                        action = "Login"}
+                        )
+                    );
             }
 
         }
