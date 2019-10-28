@@ -4,6 +4,8 @@ using Campeonato.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Campeonato.Areas.Admin.Controllers
 {
@@ -22,15 +24,31 @@ namespace Campeonato.Areas.Admin.Controllers
             this._dao = dao;
         }
 
+        [Route("/admin/adicionargol")]
+        [HttpGet]
+        public IActionResult Index()
+        {
+
+            List<Jogos> listaJogos = _dao.GetJogos()
+                .Where(p => p.Resultado_1 == null && p.Resultado_2 == null)
+               .OrderBy(j => j.Data_Hora)
+               .ToList();
+
+            return View(listaJogos);
+
+        }
+
         [Route("/admin/adicionargol/{id_jogo}")]
         [HttpGet]
-        public IActionResult Index(int id_jogo)
+        public IActionResult Cadastro(int id_jogo)
         {
+
+            JogoViewModel Jogo = _dao.GetJogo(id_jogo);
 
             ViewBag.JogoId = id_jogo;
             ViewBag.Listar_Jogadores = _dao.GetJogadores(id_jogo);
 
-            return View();
+            return View(Jogo);
 
         }
 
