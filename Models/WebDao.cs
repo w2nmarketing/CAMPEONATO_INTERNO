@@ -64,8 +64,12 @@ namespace Campeonato.Models
         public void AddGol(GolsDoJogo novoGol)
         {
 
-            _contexto.GolsDoJogo.Add(novoGol);
-            _contexto.SaveChanges();
+            if (novoGol.Gols > 0) {
+
+                _contexto.GolsDoJogo.Add(novoGol);
+                _contexto.SaveChanges();
+
+            }
 
             int Resultado_1;
             int Resultado_2;

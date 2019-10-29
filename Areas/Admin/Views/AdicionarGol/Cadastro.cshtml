@@ -1,0 +1,115 @@
+﻿@model JogoViewModel
+
+<h1>Adicionar Gol</h1>
+
+
+    <div class="row">
+
+        <div class="col-md-12 order-md-1">
+
+            <hr />
+
+            <div class="col-md-12">
+                <div class="card mb-4 shadow-sm">
+
+                    <div class="col-12 text-center p-2 text-white bg-secondary ">
+                        <strong>@Model.Categoria | @Model.Fase</strong>
+                    </div>
+
+                    <div class="row mt-4">
+
+                        <div class="col-6 text-center jogo_time_1">
+                            <a href="/jogos/time/2">
+                                <img src="/img/escudo/@Model.Escudo_1" class="escudo">
+                                <br>
+                                <strong>@Model.Time_1</strong>
+                            </a>
+                        </div>
+
+                        <div class="col-6 text-center jogo_time_2">
+                            <a href="/jogos/time/4">
+                                <img src="/img/escudo/@Model.Escudo_2" class="escudo">
+                                <br>
+                                <strong>@Model.Time_2</strong>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <p class="card-text text-center">
+                            Data: <u>@Model.Data_Hora</u>
+                        </p>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <hr />
+
+            <form action="/admin/adicionargol/salvar" method="post">
+
+                <input type="hidden" class="form-control" id="JogoId" name="JogoId" placeholder="" value="@ViewBag.JogoId" required>
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="country">Time - Jogador</label>
+                        <select class="custom-select d-block w-100" id="JogadorId" name="JogadorId" required>
+                            <option value="">Selecione</option>
+                            @foreach (var item in ViewBag.Listar_Jogadores) {
+
+                                <option value="@item.Id">
+                                    @item.Time.Nome |
+                                    @item.Nome
+                                </option>
+
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">Gols</label>
+                        <input type="text" class="form-control" id="Gols" name="Gols" placeholder="" required>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg" type="submit">Salvar Gol</button>
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
