@@ -31,8 +31,8 @@ namespace Campeonato.Areas.Admin.Controllers
 
             List<Jogos> listaJogos = _dao.GetJogos()
                 .Where(p => p.Resultado_1 == null && p.Resultado_2 == null)
-               .OrderBy(j => j.Data_Hora)
-               .ToList();
+                .OrderBy(j => j.Data_Hora)
+                .ToList();
 
             return View(listaJogos);
 

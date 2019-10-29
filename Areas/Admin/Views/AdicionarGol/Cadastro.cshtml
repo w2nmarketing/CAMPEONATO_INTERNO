@@ -19,6 +19,11 @@
                     <div class="row mt-4">
 
                         <div class="col-6 text-center jogo_time_1">
+
+                            @if (Model.Resultado_1 >= 0) {
+                                <span class="placar-esq">@Model.Resultado_1</span>
+                            }
+
                             <a href="/jogos/time/2">
                                 <img src="/img/escudo/@Model.Escudo_1" class="escudo">
                                 <br>
@@ -27,6 +32,9 @@
                         </div>
 
                         <div class="col-6 text-center jogo_time_2">
+                            @if (Model.Resultado_2 >= 0) {
+                                <span class="placar-dir">@Model.Resultado_2</span>
+                            }
                             <a href="/jogos/time/4">
                                 <img src="/img/escudo/@Model.Escudo_2" class="escudo">
                                 <br>
